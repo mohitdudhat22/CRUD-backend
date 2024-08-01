@@ -16,8 +16,8 @@ mongoose.connect(MONGO_URL).then(function() {
     console.log("DB connection");
 })
 app.use(function(req, res, next){
-    fs.appendFile("log.txt", "\n "+ Date.now() + " : " + req.method + " " + req.path,(err) => next(err));
-})
+    fs.appendFile("log.txt",Date.now() + " : " + req.method + " " + req.path+ req.ip + "\n",(err) => next(err));
+});
 app.use('/api/users', route);
 
 app.all("*", (req, res, next) => {
@@ -27,7 +27,6 @@ app.all("*", (req, res, next) => {
     next(err);
 })
 //global error handling middleware
-
 app.use((error, req, res, next) => {
     error.statusCode = error.statusCode || 500;
     error.message = error.message || "Internal server error";
