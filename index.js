@@ -36,3 +36,10 @@ app.use((error, req, res, next) => {
 app.listen(PORT, function(){
     console.log("Server listening on port "+ PORT);
 });
+
+// fs.readFile("log.txt", (err, data) => {
+//     if(err) throw err;
+//     console.log(data.toString());
+// });
+// fs.writeFile("log.txt","Hello", (err) => console.log(err));
+// fs.appendFile("log.txt",Date.now() + " : " + "Server listening on port "+ PORT + "\n",(err) => console.log(err));
